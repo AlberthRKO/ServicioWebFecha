@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DiaSemana">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="n" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DiaSemanaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiaSemanaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="meses" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DiaSemanaSoapIn">
+    <wsdl:part name="parameters" element="tns:DiaSemana" />
+  </wsdl:message>
+  <wsdl:message name="DiaSemanaSoapOut">
+    <wsdl:part name="parameters" element="tns:DiaSemanaResponse" />
+  </wsdl:message>
+  <wsdl:message name="mesSoapIn">
+    <wsdl:part name="parameters" element="tns:mes" />
+  </wsdl:message>
+  <wsdl:message name="mesSoapOut">
+    <wsdl:part name="parameters" element="tns:mesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PracticaSoap">
+    <wsdl:operation name="DiaSemana">
+      <wsdl:input message="tns:DiaSemanaSoapIn" />
+      <wsdl:output message="tns:DiaSemanaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="mes">
+      <wsdl:input message="tns:mesSoapIn" />
+      <wsdl:output message="tns:mesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PracticaSoap" type="tns:PracticaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DiaSemana">
+      <soap:operation soapAction="http://tempuri.org/DiaSemana" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mes">
+      <soap:operation soapAction="http://tempuri.org/mes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PracticaSoap12" type="tns:PracticaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DiaSemana">
+      <soap12:operation soapAction="http://tempuri.org/DiaSemana" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mes">
+      <soap12:operation soapAction="http://tempuri.org/mes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Practica">
+    <wsdl:port name="PracticaSoap" binding="tns:PracticaSoap">
+      <soap:address location="https://localhost:44317/Practica.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PracticaSoap12" binding="tns:PracticaSoap12">
+      <soap12:address location="https://localhost:44317/Practica.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
